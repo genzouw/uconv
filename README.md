@@ -43,11 +43,6 @@ $ echo あいうえお | docker run -i genzouw/uconv -x katakana
 アイウエオ
 ```
 
-## License
-
-This software is released under the MIT License, see LICENSE.
-
-
 ## Author Information
 
 [genzouw](https://genzouw.com)
