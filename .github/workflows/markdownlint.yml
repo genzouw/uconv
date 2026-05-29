@@ -4,15 +4,19 @@ on:
   push:
     branches: [main]
     paths:
-      - '**/*.md'
-      - '.markdownlint-cli2.jsonc'
-      - '.github/workflows/markdownlint.yml'
+      - "**/*.md"
+      - ".markdownlint-cli2.jsonc"
+      - ".github/workflows/markdownlint.yml"
   pull_request:
     branches: [main]
     paths:
-      - '**/*.md'
-      - '.markdownlint-cli2.jsonc'
-      - '.github/workflows/markdownlint.yml'
+      - "**/*.md"
+      - ".markdownlint-cli2.jsonc"
+      - ".github/workflows/markdownlint.yml"
+  # 初回 push 時に Actions allowlist (DavidAnson/markdownlint-cli2-action@*) が
+  # 未反映で startup_failure になった経緯あり (run #26140467998)。allowlist 反映後の
+  # 検証用および恒久対応として手動再実行経路を残す。
+  workflow_dispatch:
 
 concurrency:
   group: markdownlint-${{ github.ref }}
@@ -36,5 +40,5 @@ jobs:
       - name: Run markdownlint-cli2
         uses: DavidAnson/markdownlint-cli2-action@992badcdf24e3b8eb7e87ff9287fe931bcb00c6e # v20
         with:
-          config: '.markdownlint-cli2.jsonc'
-          globs: '**/*.md'
+          config: ".markdownlint-cli2.jsonc"
+          globs: "**/*.md"
