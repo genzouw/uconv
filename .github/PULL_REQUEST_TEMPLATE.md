@@ -37,7 +37,7 @@
 
 ## コスト方針のセルフチェック (公開 OSS)
 
-- [ ] LLM プロバイダや従量課金 API のキー (`GEMINI_API_KEY` / `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` / `TAVILY_API_KEY` 等) を GitHub Secrets へ追加していない
+- [ ] LLM プロバイダや従量課金 API のキー (`GEMINI_API_KEY` / `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` / `TAVILY_API_KEY` 等) を GitHub Secrets へ追加しておらず、追加・変更したファイルに `secrets.*` からこれらを参照する記述が含まれていない
 - [ ] 追加した SaaS / GitHub App / Action は公開 OSS リポジトリで完全無料であり、その根拠 URL を本文に記載した（外部サービスを追加していない場合はチェック可）
 - [ ] リポジトリオーナーへ新規 Secret の登録を依頼していない
 - [ ] [`AGENTS.md`](../AGENTS.md) のポリシーに違反していないことを確認した
