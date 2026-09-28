@@ -4,6 +4,7 @@
 キーワードの解釈は [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) ([日本語訳](https://www.nic.ad.jp/ja/tech/ipa/RFC2119JA.html)) に従います (MUST / MUST NOT / SHOULD / SHOULD NOT / MAY)。
 
 このファイルは [agents.md 規格](https://agents.md/) に従って配置しています。Jules や Codex、GitHub Copilot などの主要エージェントは、このファイルをリポジトリルートから自動的に読み込みます。
+Claude Code も、作業ディレクトリとその上位に `CLAUDE.md` / `.claude/CLAUDE.md` / `CLAUDE.local.md` が無ければ本ファイルを読み込みます (v2.1.277 以降)。`CLAUDE.local.md` を置く場合は、その中で `@AGENTS.md` をインポートしてください。
 
 ---
 
