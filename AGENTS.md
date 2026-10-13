@@ -72,6 +72,7 @@ Claude Code も、作業ディレクトリとその上位に `CLAUDE.md` / `.cla
 
 `.github/workflows/free-policy.yml` (実体は [`genzouw/ci-workflows`](https://github.com/genzouw/ci-workflows) の reusable workflow) が、本ポリシーのうち構文的に判定できる違反を検出します。違反を検出すると job が失敗します (`enforce: true`)。
 走査対象は、`.github/` 配下の YAML / JSON、リポジトリルート直下の Renovate 設定 (`renovate.json` 等)、composite action 定義 (`action.yml` / `action.yaml`) です。Markdown やソースコードは走査しません。
+検出条件の正は [`ci-workflows` の `free-policy.yml`](https://github.com/genzouw/ci-workflows/blob/main/.github/workflows/free-policy.yml) です。本節と食い違う場合はそちらが優先されます (本節は v1.5.11 時点の内容)。
 
 **CI が自動検出するもの**
 
@@ -99,8 +100,8 @@ Claude Code も、作業ディレクトリとその上位に `CLAUDE.md` / `.cla
 
 誤検知や、課金を伴わない正当な参照を除外する手段は次の 2 つです。
 
-- 対象行に `free-policy: allow <理由>` を含むコメントを書く
-- スタブ (`.github/workflows/free-policy.yml`) の `allowed_secrets` に Secret 名を追加する。鍵名パターン (`*_API_KEY` / `*_API_TOKEN` / `*_SECRET_KEY`・プロバイダ名付き) に合致する名前は指定できず、指定すると `enforce` の値にかかわらず job が失敗する (プロバイダ名付きでなく、名前に `GITHUB` を単語として含むものを除く)。その場合は行内マーカーを使う
+- 対象行に `free-policy: allow <理由>` を含むコメントを書きます。ただし、プロバイダ名付きの鍵名や課金可能な API のホスト名を含む行、動的な添字と `secrets` コンテキスト全体の参照は、マーカーを付けても除外されません (条件は [ci-workflows README の「段階導入と例外」](https://github.com/genzouw/ci-workflows#段階導入と例外) を参照してください)
+- スタブ (`.github/workflows/free-policy.yml`) の `allowed_secrets` に Secret 名を追加します。ただし、鍵名パターン (`*_API_KEY` / `*_API_TOKEN` / `*_SECRET_KEY`・プロバイダ名付き) に合致する名前は指定できません (プロバイダ名付きでなく、名前に `GITHUB` を単語として含むものは指定できます)。指定できない名前を書くと、`enforce` の値にかかわらず job が失敗します。その場合は、プロバイダ名付きでない行は行内マーカーを使ってください (プロバイダ名付きの鍵名はマーカーでも除外されません)
 
 どちらも次のルールに従ってください。
 
